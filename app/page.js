@@ -1,95 +1,162 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+'use client';
+
+// images
+import colorfulTanner from '@/public/images/aiColorfulTanner.webp';
+
+// context
+import { LoadingContext } from '@/app/lib/context/LoadingProvider';
+
+// hooks
+import { useContext, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+
+// chakra-ui
+import {
+  Heading,
+  Text,
+  Flex,
+  Image,
+  Stack,
+  Button,
+  VStack,
+  Box,
+} from '@chakra-ui/react';
+import { ArrowForwardIcon } from '@chakra-ui/icons';
+
+// local components
+import TannerTypes from './_components/sections/tannerTypes';
+import DeveloperIcon from './_components/icons/developerIcon';
+import DesignerIcon from './_components/icons/designerIcon';
+import ArtistIcon from './_components/icons/artistIcon';
+import MusicianIcon from './_components/icons/musicianIcon';
 
 export default function Home() {
+  const { loading, setLoading } = useContext(LoadingContext);
+  const router = useRouter();
+
+  useEffect(() => {
+    setLoading(false);
+  }, [setLoading]);
+
+  const tannerTypes = [
+    {
+      heading: 'As a Developer',
+      text: 'I thrive in the realm of possibilities, transforming complex problems into elegant software solutions. My journey in full stack development, UX/UI design, and digital marketing is marked by a commitment to excellence and innovation.',
+      boldText: 'I thrive in the realm of possibilities,',
+      icon: <DeveloperIcon />,
+      color: 'var(--neonBlue)',
+    },
+    {
+      heading: 'As a Designer',
+      text: 'I bring ideas to life with meticulous detail and creative flair. My approach blends the principles of UX/UI design with my artistic eye for aesthetics, crafting interfaces that are not only functional but also visually captivating.',
+      boldText:
+        'I bring ideas to life with meticulous detail and creative flair.',
+      icon: <DesignerIcon />,
+      color: 'var(--neonGreen)',
+    },
+    {
+      heading: 'As an Artist',
+      text: 'Beyond the pixels and algorithms, I explore the vivid textures of oil painting, where each stroke tells a story and captures emotions in color.',
+      boldText: 'Beyond the pixels and algorithms,',
+      icon: <ArtistIcon />,
+      color: 'var(--lightNeonPurple)',
+    },
+    {
+      heading: 'As a Musician',
+      text: 'My musical endeavors harmonize the rhythm of coding with the melodies of life, reflecting my belief that the best creations arise from a symphony of diverse talents.',
+      boldText: 'My musical endeavors harmonize the rhythm of coding',
+      icon: <MusicianIcon />,
+      color: 'var(--orangeAlt)',
+    },
+  ];
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.js</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
+    <Box pt={'2rem'}>
+      <Flex
+        direction={{ base: 'column', md: 'row' }}
+        color={'var(--white)'}
+        align={'center'}
+        justify={'space-between'}
+        background={'var(--darkGray)'}>
+        <Stack
+          maxW={{ base: '100%', md: '500px' }}
+          p={'2rem'}
+          mb={{ base: '1rem', md: '4rem' }}>
+          <Heading
+            mb={'1rem'}
+            size={'4xl'}
+            fontWeight={800}>
+            Not your average developer.
+          </Heading>
+          <VStack
+            align={'flex-start'}
+            mb={'2rem'}>
+            <Text>
+              I am Tanner Lemon, a Full Stack Developer with a passion for
+              building beautiful, functional, and accessible (things)...
+            </Text>
+            <Button
+              _hover={{
+                color: 'var(--orangeAlt)',
+                textDecoration: 'underline',
+              }}
+              m={0}
+              textAlign={'left'}
+              onClick={() => router.push('/about')}
+              variant={'link'}
+              color={'var(--neonGreen)'}>
+              but there&apos;s more.
+            </Button>
+          </VStack>
+          <Button
+            size={'lg'}
+            _hover={{
+              background: 'var(--neonGreen)',
+            }}
+            onClick={() => router.push('/timeline')}
+            mr={'1rem'}
+            color={'var(--darkGray)'}
+            rightIcon={<ArrowForwardIcon />}
+            background={'var(--neonBlue)'}>
+            View my work
+          </Button>
+        </Stack>
+        <Stack
+          m={'1rem'}
+          mr={'-3rem'}
+          background={'var(--neonBlue)'}
+          p={'1rem'}
+          borderRadius={'9px'}>
+          <Flex
+            alignItems={'center'}
+            overflow={'hidden'}
+            borderRadius={'9px'}>
             <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
+              src={colorfulTanner.src}
+              alt={'Tanner Lemon, full stack developer'}
+              borderRadius={'9px'}
+              width={'100%'}
             />
-          </a>
-        </div>
-      </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+          </Flex>
+        </Stack>
+      </Flex>
+      <Box p={'4rem 0'}>
+        <Flex
+          flexWrap={'wrap'}
+          justify={'center'}
+          w={'100%'}>
+          {tannerTypes.map((type) => (
+            <TannerTypes
+              key={type.heading}
+              heading={type.heading}
+              text={type.text}
+              boldText={type.boldText}
+              icon={type.icon}
+              color={type.color}
+            />
+          ))}
+        </Flex>
+      </Box>
+    </Box>
+  );
 }
