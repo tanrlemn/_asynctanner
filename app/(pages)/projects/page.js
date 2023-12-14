@@ -24,7 +24,7 @@ import {
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
 
 // local components
-import ProjectCard from '@/app/_components/cards/projectCard';
+import ProjectCard from '@/app/_components/cards/timelineItemCard';
 
 export default function Projects() {
   const { setLoading } = useContext(LoadingContext);

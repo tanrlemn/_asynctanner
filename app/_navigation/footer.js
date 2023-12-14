@@ -16,6 +16,7 @@ import {
   Input,
   Button,
   Link,
+  VStack,
 } from '@chakra-ui/react';
 import { ArrowForwardIcon } from '@chakra-ui/icons';
 
@@ -30,17 +31,20 @@ export default function Footer() {
             background: 'var(--darkGray)',
             borderTop: '1px solid var(--midGray)',
           }}>
-          <Flex
+          <VStack
+            fontSize={'0.8rem'}
+            fontWeight={300}
+            color={'var(--lighterGray)'}
             w={'100%'}
             justify={'center'}
             p={'2rem 1rem 1rem 1rem'}>
-            <Text
-              fontSize={'0.8rem'}
-              fontWeight={300}
-              color={'var(--lighterGray)'}>
-              © 2024 Tanner Lemon, All Rights reserved
-            </Text>
-          </Flex>
+            <Text>© 2024 Tanner Lemon, All Rights reserved</Text>
+            <Link
+              href='https://github.com/tanrlemn/_asynctanner'
+              color={'var(--neonBlue)'}>
+              View this repo on GitHub
+            </Link>
+          </VStack>
         </footer>
       )}
     </>

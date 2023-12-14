@@ -47,7 +47,7 @@ export default function ContactDrawer({ isOpen, onClose }) {
               to get in touch, please send me an email at:
             </Heading>
             <Link
-              href={'mailto:tanrlemn@gmail.com'}
+              href={'mailto:contact@asynctanner.com'}
               target='_blank'
               _hover={{ textDecoration: 'none' }}>
               <Flex
@@ -64,7 +64,7 @@ export default function ContactDrawer({ isOpen, onClose }) {
                   ml={'1rem'}
                   fontSize={'1.2rem'}
                   fontWeight={500}>
-                  tanrlemn@gmail.com
+                  contact@asynctanner.com
                 </Text>
               </Flex>
             </Link>

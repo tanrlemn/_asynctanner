@@ -24,11 +24,11 @@ export async function GET() {
   );
 
   try {
-    const { data: collections, error } = await supabase
-      .from('collections')
+    const { data: timeline_items, error } = await supabase
+      .from('timeline_items')
       .select();
 
-    return NextResponse.json({ collections, error });
+    return NextResponse.json({ timeline_items, error });
   } catch (error) {
     console.error(error);
     return NextResponse.error(error);

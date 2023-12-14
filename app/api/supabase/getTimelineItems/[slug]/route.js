@@ -26,14 +26,14 @@ export async function GET(request, { params }) {
   );
 
   try {
-    const { data: subscription_tiers, error } = await supabase
-      .from('subscription_tiers')
+    const { data: timeline_items, error } = await supabase
+      .from('timeline_items')
       .select('*')
       .eq('slug', slug);
 
-    const tier = subscription_tiers[0];
+    const item = timeline_items[0];
 
-    return NextResponse.json({ tier, error });
+    return NextResponse.json({ item, error });
   } catch (error) {
     console.error(error);
     return NextResponse.error(error);

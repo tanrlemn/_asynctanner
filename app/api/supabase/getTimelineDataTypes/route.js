@@ -24,11 +24,12 @@ export async function GET() {
   );
 
   try {
-    const { data: subscription_tiers, error } = await supabase
-      .from('subscription_tiers')
-      .select();
+    const { data: timeline_data_types, error } = await supabase
+      .from('timeline_data_types')
+      .select()
+      .order('id', { ascending: true });
 
-    return NextResponse.json({ subscription_tiers, error });
+    return NextResponse.json({ timeline_data_types, error });
   } catch (error) {
     console.error(error);
     return NextResponse.error(error);
