@@ -30,39 +30,30 @@ export default function ContactDrawer({ isOpen, onClose }) {
       <DrawerOverlay />
       <DrawerContent>
         <DrawerCloseButton />
-        <DrawerHeader>
-          <Logo />
-        </DrawerHeader>
 
-        <DrawerBody w={'100%'}>
+        <DrawerBody
+          w={'100%'}
+          mt={'2rem'}>
           <VStack
             align={'flex-start'}
             w={'100%'}>
             <Heading size={'lg'}>Contact Me</Heading>
             <Heading
-              mb={'1rem'}
-              size={'md'}
+              size={'sm'}
               fontWeight={400}>
               I&apos;m currently open to new opportunities. If you&apos;d like
-              to get in touch, please send me an email at:
+              to get in touch, please send me an email.
             </Heading>
             <Link
+              color={'var(--neonBlue)'}
               href={'mailto:contact@asynctanner.com'}
-              target='_blank'
-              _hover={{ textDecoration: 'none' }}>
+              target='_blank'>
               <Flex
-                _hover={{
-                  background: 'var(--darkGrayAlt)',
-                }}
-                background={'var(--darkGray)'}
-                borderRadius={'9px'}
-                p={'1rem 2rem'}
                 align={'center'}
+                color={'var(--neonBlue)'}
                 w={'100%'}>
-                <EmailIcon />
                 <Text
-                  ml={'1rem'}
-                  fontSize={'1.2rem'}
+                  fontSize={'1rem'}
                   fontWeight={500}>
                   contact@asynctanner.com
                 </Text>

@@ -31,7 +31,7 @@ import ArtistIcon from './_components/icons/artistIcon';
 import MusicianIcon from './_components/icons/musicianIcon';
 
 export default function Home() {
-  const { loading, setLoading } = useContext(LoadingContext);
+  const { setLoading } = useContext(LoadingContext);
   const router = useRouter();
 
   useEffect(() => {
@@ -71,7 +71,7 @@ export default function Home() {
   ];
 
   return (
-    <Box pt={'2rem'}>
+    <Box p={{ base: '2rem 1rem', md: '1rem' }}>
       <Flex
         direction={{ base: 'column', md: 'row' }}
         color={'var(--white)'}
@@ -79,9 +79,9 @@ export default function Home() {
         justify={'space-between'}
         background={'var(--darkGray)'}>
         <Stack
-          maxW={{ base: '100%', md: '500px' }}
-          p={'2rem'}
-          mb={{ base: '1rem', md: '4rem' }}>
+          maxW={{ base: '100%', md: '550px' }}
+          p={{ base: '0', md: '2rem' }}
+          mb={{ base: '2rem', md: '4rem' }}>
           <Heading
             mb={'1rem'}
             size={'4xl'}
@@ -122,8 +122,9 @@ export default function Home() {
           </Button>
         </Stack>
         <Stack
-          m={'1rem'}
-          mr={'-3rem'}
+          maxW={{ base: '100%', md: '800px' }}
+          m={{ base: '0', md: '1rem' }}
+          mr={{ base: '0', md: '-3rem' }}
           background={'var(--neonBlue)'}
           p={'1rem'}
           borderRadius={'9px'}>
@@ -140,7 +141,7 @@ export default function Home() {
           </Flex>
         </Stack>
       </Flex>
-      <Box p={'4rem 0'}>
+      <Box p={{ base: '6rem 0 0 0', md: '4rem 0' }}>
         <Flex
           flexWrap={'wrap'}
           justify={'center'}

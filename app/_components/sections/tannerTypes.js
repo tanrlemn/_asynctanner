@@ -7,7 +7,8 @@ export default function TannerTypes({ heading, text, boldText, icon, color }) {
   return (
     <Box
       maxW={{ base: '100%', md: '45%' }}
-      p={'2rem'}>
+      mb={{ base: '5rem', md: '0' }}
+      p={{ base: '0', md: '2rem' }}>
       <Flex
         align={'center'}
         mb={'1rem'}>
