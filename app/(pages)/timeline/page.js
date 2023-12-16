@@ -22,6 +22,7 @@ import { ArrowForwardIcon, ArrowBackIcon } from '@chakra-ui/icons';
 
 // local components
 import TimelineItemCard from '@/app/_components/cards/timelineItemCard';
+import TimelineItemPopover from '@/app/_components/cards/timelineItemPopover';
 
 export default function Timeline() {
   const { setLoading } = useContext(LoadingContext);
@@ -37,6 +38,8 @@ export default function Timeline() {
     const getTimelineItems = async () => {
       const res = await fetch('/api/supabase/getTimelineItems');
       const data = await res.json();
+
+      console.log(data);
       setTimelineItems(data.timeline_items);
     };
 
@@ -71,19 +74,19 @@ export default function Timeline() {
   };
 
   return (
-    <Box
-      p={'1rem 2rem'}
-      maxH={'90vh'}>
+    <Box p={'1rem 2rem'}>
       <VStack gap={0}>
-        {/* first row */}
+        {/* data types row */}
         <Grid
           w={'100%'}
           templateColumns='repeat(3, 1fr)'
           gap={0}>
+          {/* spacer */}
           <GridItem
             w={'100%'}
             h={'100%'}
           />
+          {/* data types */}
           <GridItem
             w={'100%'}
             h={'100%'}>
@@ -123,16 +126,18 @@ export default function Timeline() {
               </Flex>
             )}
           </GridItem>
+          {/* spacer */}
           <GridItem
             w={'100%'}
             h={'100%'}
           />
         </Grid>
-        {/* second row */}
+        {/* title row */}
         <Grid
           w={'100%'}
           templateColumns='repeat(2, 1fr)'
           gap={0}>
+          {/* title item */}
           <GridItem
             w={'100%'}
             h={'100%'}>
@@ -159,7 +164,7 @@ export default function Timeline() {
               </Box>
             </Flex>
           </GridItem>
-          {/* center item */}
+          {/* divider */}
           <GridItem
             w={'100%'}
             h={'100%'}>
@@ -180,6 +185,7 @@ export default function Timeline() {
           w={'100%'}
           templateColumns='repeat(5, 1fr)'
           gap={0}>
+          {/* left arrow */}
           <GridItem
             w='100%'
             h='100%'>
@@ -201,6 +207,7 @@ export default function Timeline() {
               </Flex>
             </Flex>
           </GridItem>
+          {/* divider */}
           <GridItem
             w='100%'
             h='100%'>
@@ -215,7 +222,7 @@ export default function Timeline() {
                 background={'var(--neonBlue)'}></Box>
             </Flex>
           </GridItem>
-          {/* center item */}
+          {/* center image item */}
           <GridItem
             w='100%'
             h='100%'>
@@ -233,6 +240,7 @@ export default function Timeline() {
               />
             </Box>
           </GridItem>
+          {/* divider */}
           <GridItem
             w={'100%'}
             h={'100%'}>
@@ -247,6 +255,7 @@ export default function Timeline() {
                 background={'var(--neonBlue)'}></Box>
             </Flex>
           </GridItem>
+          {/* right arrow */}
           <GridItem
             w={'100%'}
             h={'100%'}>
@@ -274,6 +283,7 @@ export default function Timeline() {
           w={'100%'}
           templateColumns='repeat(2, 1fr)'
           gap={0}>
+          {/* divider */}
           <GridItem
             w={'100%'}
             h={'100%'}>
@@ -290,6 +300,7 @@ export default function Timeline() {
           </GridItem>
           {/* main item */}
           <GridItem
+            pb={'2rem'}
             w={'100%'}
             h={'100%'}>
             <Box
@@ -306,42 +317,60 @@ export default function Timeline() {
             </Box>
           </GridItem>
         </Grid>
-        {/* fifth row */}
-        <Grid
-          w={'100%'}
-          templateColumns='repeat(5, 1fr)'
-          gap={0}>
-          <GridItem
+        {/* timeline row */}
+        {timelineItems !== null && (
+          <Grid
+            position={'fixed'}
+            bottom={0}
+            background={'var(--darkGrayAlt)'}
+            pb={'1rem'}
             w={'100%'}
-            h={'100%'}
-            minH={10}
-            bg='blue.500'
-          />
-          <GridItem
-            w={'100%'}
-            h={'100%'}
-            minH={10}
-            bg='yellow.500'
-          />
-          <GridItem
-            w={'100%'}
-            h={'100%'}
-            minH={10}
-            bg='orange.500'
-          />
-          <GridItem
-            w={'100%'}
-            h={'100%'}
-            minH={10}
-            bg='green.500'
-          />
-          <GridItem
-            w={'100%'}
-            h={'100%'}
-            minH={10}
-            bg='purple.500'
-          />
-        </Grid>
+            templateColumns={`repeat(${timelineItems.length}, 1fr)`}
+            gap={0}>
+            <Box
+              w={'100%'}
+              h={'1px'}
+              position={'absolute'}
+              zIndex={1}
+              background={'var(--neonBlue)'}></Box>
+            {timelineItems.map((item) => (
+              <Grid
+                templateColumns={`repeat(3, 1fr)`}
+                key={item.id}
+                justify={'space-around'}>
+                <GridItem
+                  w={'100%'}
+                  h={'100%'}>
+                  <Flex justify={'center'}>
+                    <Box
+                      w={'1px'}
+                      h={'0.5rem'}
+                      background={'var(--grayAlt)'}
+                    />
+                  </Flex>
+                </GridItem>
+                <GridItem
+                  w={'100%'}
+                  h={'100%'}>
+                  <Flex justify={'center'}>
+                    <TimelineItemPopover item={item} />
+                  </Flex>
+                </GridItem>
+                <GridItem
+                  w={'100%'}
+                  h={'100%'}>
+                  <Flex justify={'center'}>
+                    <Box
+                      w={'1px'}
+                      h={'0.5rem'}
+                      background={'var(--grayAlt)'}
+                    />
+                  </Flex>
+                </GridItem>
+              </Grid>
+            ))}
+          </Grid>
+        )}
       </VStack>
     </Box>
   );

@@ -5,27 +5,20 @@ import { LoadingContext } from '../lib/context/LoadingProvider';
 
 // hooks
 import { useContext } from 'react';
+import { usePathname } from 'next/navigation';
 
 // components
-import {
-  Flex,
-  Box,
-  Heading,
-  Text,
-  Stack,
-  Input,
-  Button,
-  Link,
-  VStack,
-} from '@chakra-ui/react';
-import { ArrowForwardIcon } from '@chakra-ui/icons';
+import { Text, Link, VStack } from '@chakra-ui/react';
 
 export default function Footer() {
   const { loading } = useContext(LoadingContext);
+  const pathname = usePathname();
+
+  const isTimeline = pathname === '/timeline';
 
   return (
     <>
-      {!loading && (
+      {!loading && !isTimeline && (
         <footer
           style={{
             background: 'var(--darkGray)',
